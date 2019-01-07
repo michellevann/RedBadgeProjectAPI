@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RedStarter.Database.Entities.Application;
+using RedStarter.Database.Entities.Painting;
 using RedStarter.Database.Entities.People;
 using RedStarter.Database.Entities.Roles;
 
@@ -20,6 +21,7 @@ namespace RedStarter.Database.Contexts
         public SISContext(DbContextOptions<SISContext> options) 
             : base(options) { }
 
+        public DbSet<PaintingEntity> PaintingTableAccess { get; set; }
         public DbSet<UserEntity> UserTableAccess { get; set; }
         public DbSet<ApplicationEntity> ApplicationTableAccess { get; set; }
         public DbSet<ContactEntity> ContactTableAccess { get; set; }
