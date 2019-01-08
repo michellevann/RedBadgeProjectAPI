@@ -16,6 +16,9 @@ namespace RedStarter.Database.Entities.Painting
         public string Artist { get; set; }
 
         [Required]
+        public int OwnerId { get; set; }
+
+        [Required]
         public DateTimeOffset DateAdded { get; set; }
     }
 }
