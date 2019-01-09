@@ -37,5 +37,13 @@ namespace RedStarter.Database.Painting
 
             return array;
         }
+
+        public async Task<PaintingGetListItemRAO> GetPaintingById(int id)
+        {
+            var query = await _context.PaintingTableAccess.SingleAsync(e => e.PaintingEntityId == id);
+            var rao = _mapper.Map<PaintingGetListItemRAO>(query);
+
+            return rao;
+        }
     }
 }

@@ -61,5 +61,21 @@ namespace RedStarter.API.Controllers.Painting
 
             return Ok(response);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPaintingById(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var dto = await _manager.GetPaintingById(id);
+            var response = _mapper.Map<PaintingGetByIdRequest>(dto);
+
+            return Ok(response);
+        }
     }
 }

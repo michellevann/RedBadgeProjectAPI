@@ -36,5 +36,13 @@ namespace RedStarter.Business.Managers.Painting
 
             return dto;
         }
+
+        public async Task<PaintingGetListItemDTO> GetPaintingById(int id)
+        {
+            var rao = await _repository.GetPaintingById(id);
+            var dto = _mapper.Map<PaintingGetListItemDTO>(rao);
+
+            return dto;
+        }
     }
 }
