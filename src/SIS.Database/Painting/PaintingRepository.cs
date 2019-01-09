@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RedStarter.Database.Contexts;
 using RedStarter.Database.DataContract.Painting;
 using RedStarter.Database.Entities.Painting;
@@ -27,6 +28,22 @@ namespace RedStarter.Database.Painting
             await _context.PaintingTableAccess.AddAsync(entity);
 
             return await _context.SaveChangesAsync() == 1;
+        }
+
+        public async Task<IEnumerable<PaintingGetListItemRAO>> GetPaintings()
+        {
+            var query = await _context.PaintingTableAccess.ToArrayAsync();
+            var array = _mapper.Map<IEnumerable<PaintingGetListItemRAO>>(query);
+
+            return array;
+        }
+
+        public async Task<PaintingGetListItemRAO> GetPaintingById(int id)
+        {
+            var query = await _context.PaintingTableAccess.SingleAsync(e => e.PaintingEntityId == id);
+            var rao = _mapper.Map<PaintingGetListItemRAO>(query);
+
+            return rao;
         }
     }
 }

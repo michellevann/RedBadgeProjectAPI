@@ -11,6 +11,7 @@ using RedStarter.Business.DataContract.Painting;
 
 namespace RedStarter.API.Controllers.Painting
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class PaintingController : Controller
@@ -42,6 +43,39 @@ namespace RedStarter.API.Controllers.Painting
                 return StatusCode(201);
 
             throw new Exception();
+        }
+
+        [HttpGet]
+        //[Authorize(Roles = "User, Admin")]
+        public async Task<IActionResult> GetPaintings()
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var dto = await _manager.GetPaintings();
+            var response = _mapper.Map<IEnumerable<PaintingResponse>>(dto);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPaintingById(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var dto = await _manager.GetPaintingById(id);
+            var response = _mapper.Map<PaintingGetByIdRequest>(dto);
+
+            return Ok(response);
         }
     }
 }

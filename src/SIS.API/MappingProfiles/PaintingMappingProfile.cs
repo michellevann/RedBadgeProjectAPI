@@ -17,6 +17,10 @@ namespace RedStarter.API.MappingProfiles
             CreateMap<PaintingCreateRequest, PaintingCreateDTO>();
             CreateMap<PaintingCreateDTO, PaintingCreateRAO>();
             CreateMap<PaintingCreateRAO, PaintingEntity>();
+
+            CreateMap<PaintingEntity, PaintingGetListItemRAO>();
+            CreateMap<PaintingGetListItemRAO, PaintingGetListItemDTO>();
+            CreateMap<PaintingGetListItemDTO, PaintingResponse>();
         }
     }
 }

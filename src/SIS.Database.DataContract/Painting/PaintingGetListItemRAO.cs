@@ -1,25 +1,15 @@
-﻿using RedStarter.Database.Entities.Painting;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace RedStarter.Database.Entities.Painting
+namespace RedStarter.Database.DataContract.Painting
 {
-    public class PaintingEntity
+    public class PaintingGetListItemRAO
     {
-        [Key]
         public int PaintingEntityId { get; set; }
-
         public string Artist { get; set; }
-
-        [Required]
         public int OwnerId { get; set; }
-
-        [Required]
         public DateTimeOffset DateAdded { get; set; }
-
-
         public string Size { get; set; }
         public double Price { get; set; }
         public string Color { get; set; }
