@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedStarter.Database.Entities.Painting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -12,5 +13,7 @@ namespace RedStarter.Database.Entities.Purchase
 
         [Required]
         public DateTimeOffset PurchaseDate { get; set; }
+
+        public virtual PaintingEntity PaintingEntity { get; set; }
     }
 }

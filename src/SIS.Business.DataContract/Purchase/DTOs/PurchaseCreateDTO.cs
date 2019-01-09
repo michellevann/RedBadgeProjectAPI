@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedStarter.Business.DataContract.Painting;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,5 +10,7 @@ namespace RedStarter.Business.DataContract.Purchase
         public int OwnerId { get; set; }
         public int PurchaseId { get; set; }
         public DateTimeOffset PurchaseDate { get; set; }
+
+        public virtual PaintingCreateDTO Painting { get; set; }
     }
 }
