@@ -22,7 +22,7 @@ namespace RedStarter.Database.Contexts
         public SISContext(DbContextOptions<SISContext> options) 
             : base(options) { }
 
-        public DbSet<PurchaseEntity> PurchaseTableAccess { get; set; }
+        public DbSet<PurchaseEntity> PurchaseTableAccess{ get; set; }
         public DbSet<PaintingEntity> PaintingTableAccess { get; set; }
         public DbSet<UserEntity> UserTableAccess { get; set; }
         public DbSet<ApplicationEntity> ApplicationTableAccess { get; set; }
