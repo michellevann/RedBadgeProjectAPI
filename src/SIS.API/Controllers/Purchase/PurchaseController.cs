@@ -83,6 +83,21 @@ namespace RedStarter.API.Controllers.Purchase
             return Ok(response); //TODO: Handle Exceptions
         }
 
+        [HttpDelete("{id}")]
+        //[Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeletePurchaseById(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            if (await _manager.DeletePurchaseById(id))
+                return StatusCode(200);
+
+            throw new Exception();
+        }
+
     }
 
 }

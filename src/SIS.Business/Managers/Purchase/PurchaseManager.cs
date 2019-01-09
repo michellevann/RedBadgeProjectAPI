@@ -2,6 +2,7 @@
 using RedStarter.Business.DataContract.Purchase;
 using RedStarter.Business.DataContract.Purchase.DTOs;
 using RedStarter.Database.DataContract.Purchase;
+using RedStarter.Database.DataContract.Purchase.RAOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -44,6 +45,14 @@ namespace RedStarter.Business.Managers.Purchase
             var dto = _mapper.Map<PurchaseListItemDTO>(rao);
 
             return dto;
+        }
+
+        public async Task<bool> DeletePurchaseById(int id)
+        {
+            if (await _repository.DeletePurchaseById(id))
+                return true;
+
+            return false;
         }
     }
 }

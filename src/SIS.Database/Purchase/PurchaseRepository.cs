@@ -46,5 +46,13 @@ namespace RedStarter.Database.Purchase
 
             return rao;
         }
+
+        public async Task<bool> DeletePurchaseById(int id)
+        {
+            var entity = await _context.PurchaseTableAccess.SingleAsync(e => e.PurchaseId == id);
+            _context.Remove(entity);
+
+            return await _context.SaveChangesAsync() == 1;
+        }
     }
 }
