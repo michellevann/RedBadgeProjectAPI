@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedStarter.API.DataContract.Purchase
 {
-    public class PurchaseDeleteRequest
+    public class PurchaseListItemRequest
     {
         public int PurchaseId { get; set; }
     }

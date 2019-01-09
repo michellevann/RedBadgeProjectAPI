@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace RedStarter.Database.Entities.Purchase
+namespace RedStarter.Business.DataContract.Purchase.DTOs
 {
-    public class PurchaseEntity
+    public class PurchaseListItemDTO
     {
-        [Key]
         public int PurchaseId { get; set; }
-
-        [Required]
         public DateTimeOffset PurchaseDate { get; set; }
     }
 }

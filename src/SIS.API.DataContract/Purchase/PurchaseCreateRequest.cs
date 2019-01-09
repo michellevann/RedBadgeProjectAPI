@@ -7,6 +7,5 @@ namespace RedStarter.API.DataContract.Purchase
     public class PurchaseCreateRequest
     {
         public int PurchaseId { get; set; }
-        public DateTime PurchaseDate { get; set; }
     }
 }

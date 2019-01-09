@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RedStarter.Business.DataContract.Purchase;
+using RedStarter.Business.DataContract.Purchase.DTOs;
 using RedStarter.Database.DataContract.Purchase;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,14 @@ namespace RedStarter.Business.Managers.Purchase
                 return true;
 
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<PurchaseListItemDTO>> GetPurchases()
+        {
+            var rao = await _repository.GetPurchases();
+            var dto = _mapper.Map<IEnumerable<PurchaseListItemDTO>>(rao);
+
+            return dto;
         }
     }
 }
