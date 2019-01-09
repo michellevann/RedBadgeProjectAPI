@@ -39,5 +39,12 @@ namespace RedStarter.Database.Purchase
             return rao;
         }
 
+        public async Task<PurchaseListItemRAO> GetPurchaseById(int id)
+        {
+            var query = await _context.PurchaseTableAccess.SingleAsync(e => e.PurchaseId == id);
+            var rao = _mapper.Map<PurchaseListItemRAO>(query);
+
+            return rao;
+        }
     }
 }

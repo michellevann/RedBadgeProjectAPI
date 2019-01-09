@@ -37,6 +37,14 @@ namespace RedStarter.Business.Managers.Purchase
 
             return dto;
         }
+
+        public async Task<PurchaseListItemDTO> GetPurchaseById(int id)
+        {
+            var rao = await _repository.GetPurchaseById(id);
+            var dto = _mapper.Map<PurchaseListItemDTO>(rao);
+
+            return dto;
+        }
     }
 }
 

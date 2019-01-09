@@ -53,12 +53,12 @@ namespace RedStarter.API.Controllers.Purchase
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetPurchases()
         {
-            if (!ModelState.IsValid) //want this to check 
+            if (!ModelState.IsValid) 
             {
                 return StatusCode(400);
             }
 
-            //var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var dto = await _manager.GetPurchases();
             var response = _mapper.Map<IEnumerable<PurchaseListItemResponse>>(dto);
@@ -66,7 +66,7 @@ namespace RedStarter.API.Controllers.Purchase
             return Ok(response); //TODO : Handle exceptions
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetPurchaseById(int id)
         {
@@ -77,7 +77,7 @@ namespace RedStarter.API.Controllers.Purchase
 
             var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            var dto = await _manager.GetPurchaseById();
+            var dto = await _manager.GetPurchaseById(id);
             var response = _mapper.Map<PurchaseListItemResponse>(dto);
 
             return Ok(response); //TODO: Handle Exceptions
