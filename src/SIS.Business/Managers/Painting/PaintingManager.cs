@@ -28,5 +28,13 @@ namespace RedStarter.Business.Managers.Painting
 
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<PaintingGetListItemDTO>> GetPaintings()
+        {
+            var rao = await _repository.GetPaintings();
+            var dto = _mapper.Map<IEnumerable<PaintingGetListItemDTO>>(rao);
+
+            return dto;
+        }
     }
 }

@@ -8,5 +8,6 @@ namespace RedStarter.Database.DataContract.Painting
     public interface IPaintingRepository
     {
         Task<bool> CreatePainting(PaintingCreateRAO rao);
+        Task<IEnumerable<PaintingGetListItemRAO>> GetPaintings();
     }
 }
