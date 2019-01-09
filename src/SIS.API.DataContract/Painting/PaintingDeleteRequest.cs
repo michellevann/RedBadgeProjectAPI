@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedStarter.API.DataContract.Painting
 {
-    class PaintingDeleteRequest
+    public class PaintingDeleteRequest
     {
     }
 }
