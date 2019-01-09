@@ -10,5 +10,6 @@ namespace RedStarter.Business.DataContract.Painting
         Task<bool> CreatePainting(PaintingCreateDTO dto);
         Task<IEnumerable<PaintingGetListItemDTO>> GetPaintings();
         Task<PaintingGetListItemDTO> GetPaintingById(int id);
+        Task<bool> DeletePainting(int id);
     }
 }
