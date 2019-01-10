@@ -61,7 +61,6 @@ namespace RedStarter.Database.Painting
             entity.Price = rao.Price;
             entity.Color = rao.Color;
             entity.ImageUrl = rao.ImageUrl;
-            entity.PriceRange = rao.PriceRange;
 
             _context.PaintingTableAccess.Update(entity);
             
