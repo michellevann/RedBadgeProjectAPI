@@ -45,5 +45,18 @@ namespace RedStarter.Database.Painting
 
             return rao;
         }
+
+        public async Task<bool> DeletePainting(int id)
+        {
+            var entity = await _context.PaintingTableAccess.SingleAsync(e => e.PaintingEntityId == id);
+            _context.Remove(entity);
+            return await _context.SaveChangesAsync() == 1;
+
+            //var entity = _mapper.Map<PaintingEntity>(id);
+
+            //var query = await _context.PaintingTableAccess.Remove(e => e.)
+
+            //var rao = _mapper.Map<PaintingGetListItemRAO>(query);
+        }
     }
 }

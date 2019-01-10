@@ -44,5 +44,13 @@ namespace RedStarter.Business.Managers.Painting
 
             return dto;
         }
+
+        public async Task<bool> DeletePainting(int id)
+        {
+            if (await _repository.DeletePainting(id))
+                return true;
+
+            throw new Exception();
+        }
     }
 }

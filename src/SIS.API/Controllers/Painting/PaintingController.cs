@@ -77,5 +77,19 @@ namespace RedStarter.API.Controllers.Painting
 
             return Ok(response);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePainting(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            if (await _manager.DeletePainting(id))
+                return StatusCode(217);
+
+            throw new Exception();
+        }
     }
 }
