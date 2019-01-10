@@ -91,5 +91,25 @@ namespace RedStarter.API.Controllers.Painting
 
             throw new Exception();
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePainting(PaintingUpdateRequest request, int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var dto = _mapper.Map<PaintingUpdateDTO>(request);
+            dto.OwnerId = identityClaimNum;
+            dto.PaintingEntityId = id;
+
+            if (await _manager.UpdatePainting(dto)) //postman p
+                return StatusCode(202);
+
+            throw new Exception();
+        }
     }
 }
