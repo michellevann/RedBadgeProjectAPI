@@ -52,5 +52,15 @@ namespace RedStarter.Business.Managers.Painting
 
             throw new Exception();
         }
+
+        public async Task<bool> UpdatePainting(PaintingUpdateDTO dto)
+        {
+            var rao = _mapper.Map<PaintingUpdateRAO>(dto);
+
+            if (await _repository.UpdatePainting(rao)) //postman problem
+                return true;
+
+            throw new Exception();
+        }
     }
 }

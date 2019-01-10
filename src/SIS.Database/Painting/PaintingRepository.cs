@@ -51,12 +51,20 @@ namespace RedStarter.Database.Painting
             var entity = await _context.PaintingTableAccess.SingleAsync(e => e.PaintingEntityId == id);
             _context.Remove(entity);
             return await _context.SaveChangesAsync() == 1;
+        }
 
-            //var entity = _mapper.Map<PaintingEntity>(id);
+        public async Task<bool> UpdatePainting(PaintingUpdateRAO rao)
+        {
+            var entity = await _context.PaintingTableAccess.SingleAsync(e => e.PaintingEntityId == rao.PaintingEntityId && e.OwnerId == rao.OwnerId); //postman problem
+            entity.Artist = rao.Artist;
+            entity.Size = rao.Size;
+            entity.Price = rao.Price;
+            entity.Color = rao.Color;
+            entity.ImageUrl = rao.ImageUrl;
 
-            //var query = await _context.PaintingTableAccess.Remove(e => e.)
-
-            //var rao = _mapper.Map<PaintingGetListItemRAO>(query);
+            _context.PaintingTableAccess.Update(entity);
+            
+            return await _context.SaveChangesAsync() == 1;
         }
     }
 }

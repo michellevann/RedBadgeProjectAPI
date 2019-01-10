@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedStarter.Database.Contexts;
 
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    partial class SISContextModelSnapshot : ModelSnapshot
+    [Migration("20190110205722_deletedpricerange")]
+    partial class deletedpricerange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,23 +258,6 @@ namespace RedStarter.Database.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
-                {
-                    b.Property<int>("PurchaseId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("PaintingEntityId");
-
-                    b.Property<DateTimeOffset>("PurchaseDate");
-
-                    b.HasKey("PurchaseId");
-
-                    b.HasIndex("PaintingEntityId");
-
-                    b.ToTable("PurchaseTableAccess");
-                });
-
             modelBuilder.Entity("RedStarter.Database.Entities.Roles.RoleEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -341,13 +326,6 @@ namespace RedStarter.Database.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
-                {
-                    b.HasOne("RedStarter.Database.Entities.Painting.PaintingEntity", "Painting")
-                        .WithMany()
-                        .HasForeignKey("PaintingEntityId");
                 });
 
             modelBuilder.Entity("RedStarter.Database.Entities.Roles.UserRoleEntity", b =>
