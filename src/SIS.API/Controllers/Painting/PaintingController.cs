@@ -26,7 +26,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostPainting(PaintingCreateRequest request)
+        public async Task<IActionResult> PostPainting([FromForm]PaintingCreateRequest request)
         {    
             if (!ModelState.IsValid)
             {
@@ -39,11 +39,22 @@ namespace RedStarter.API.Controllers.Painting
             dto.DateAdded = DateTime.Now;
             dto.OwnerId = identityClaimNum;
 
+            //var dtoImage = _mapper.Map<PaintingImageDTO>(image);
+            //var success = await _manager.UploadPaintingImage(dtoImage);
+
             if (await _manager.CreatePainting(dto))
                 return StatusCode(201);
 
             throw new Exception();
         }
+
+        //[HttpPost("UploadPaintingImage")]
+        //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
+        //{
+        //    var dtoImage = _mapper.Map<PaintingImageDTO>(image);
+        //    var success = await _manager.UploadPaintingImage(dtoImage);
+        //    return Ok(); //TODO: make statuscode 201?
+        //}
 
         [HttpGet]
         //[Authorize(Roles = "User, Admin")]
@@ -106,10 +117,11 @@ namespace RedStarter.API.Controllers.Painting
             dto.OwnerId = identityClaimNum;
             dto.PaintingEntityId = id;
 
-            if (await _manager.UpdatePainting(dto)) //postman p
+            if (await _manager.UpdatePainting(dto))
                 return StatusCode(202);
 
             throw new Exception();
         }
+
     }
 }

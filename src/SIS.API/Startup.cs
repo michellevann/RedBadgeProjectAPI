@@ -16,6 +16,7 @@ using RedStarter.API.MappingProfiles;
 using RedStarter.Business.DataContract.Application.Interfaces;
 using RedStarter.Business.DataContract.Authorization.Interfaces;
 using RedStarter.Business.DataContract.Painting;
+using RedStarter.Business.Engines;
 using RedStarter.Business.DataContract.Purchase;
 using RedStarter.Business.Managers.Application;
 using RedStarter.Business.Managers.Authorization;
@@ -119,6 +120,7 @@ namespace RedStarter.API
             services.AddScoped<IUserApplicationManager, UserApplicationManager>();
             services.AddScoped<IPaintingManager, PaintingManager>();
             services.AddScoped<IPaintingRepository, PaintingRepository>();
+            services.AddScoped<IImageEngine, ImageEngine>();
             services.AddScoped<IPurchaseManager, PurchaseManager>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
 

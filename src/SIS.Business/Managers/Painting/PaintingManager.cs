@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RedStarter.API.DataContract.Painting;
 using RedStarter.Business.DataContract.Painting;
 using RedStarter.Database.DataContract.Painting;
 using System;
@@ -12,16 +13,20 @@ namespace RedStarter.Business.Managers.Painting
     {
         private readonly IMapper _mapper;
         private readonly IPaintingRepository _repository;
+        private readonly IImageEngine _engine;
 
-        public PaintingManager(IMapper mapper, IPaintingRepository repository)
+        public PaintingManager(IMapper mapper, IPaintingRepository repository, IImageEngine engine)
         {
             _mapper = mapper;
             _repository = repository;
+            _engine = engine;
         }
 
         public async Task<bool> CreatePainting(PaintingCreateDTO dto)
         {
             var rao = _mapper.Map<PaintingCreateRAO>(dto);
+            var returnedURL = _engine.UploadImageAndGetUrl(dto);
+            rao.ImageUrl = returnedURL;
 
             if (await _repository.CreatePainting(rao))
                 return true;
@@ -57,10 +62,27 @@ namespace RedStarter.Business.Managers.Painting
         {
             var rao = _mapper.Map<PaintingUpdateRAO>(dto);
 
-            if (await _repository.UpdatePainting(rao)) //postman problem
+            if (await _repository.UpdatePainting(rao))
                 return true;
 
             throw new Exception();
         }
+
+        //public async Task<bool> UploadPaintingImage(PaintingImageDTO image)
+        //{
+        //    var returnedURL = _engine.UploadImageAndGetUrl(image);
+        //    var rao = _mapper.Map<PaintingImageRAO>(image);
+        //    rao.ImageUrl = returnedURL;
+        //    //var imageurl = await _repository.UploadPaintingImage(rao);
+        //    //return imageurl;
+
+        //    if (await _repository.UploadPaintingImage(rao))
+        //        return true;
+
+
+        //    //TODO 2: map the dto to an rao after the engine is done
+        //    //TODO 3: CALL THE _repo method
+        //    throw new NotImplementedException();
+        //}
     }
 }
