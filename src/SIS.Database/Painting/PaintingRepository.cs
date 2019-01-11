@@ -66,5 +66,14 @@ namespace RedStarter.Database.Painting
             
             return await _context.SaveChangesAsync() == 1;
         }
+
+        //public async Task<bool> UploadPaintingImage(PaintingImageRAO image)
+        //{
+        //    var imageEntity = await _context.PaintingTableAccess.FindAsync(image.PaintingEntityId);
+
+        //    _context.PaintingTableAccess.Update(imageEntity);
+        //    imageEntity.ImageUrl = image.ImageUrl;
+        //    return await _context.SaveChangesAsync() == 1;
+        //}
     }
 }
