@@ -16,19 +16,24 @@ using RedStarter.API.MappingProfiles;
 using RedStarter.Business.DataContract.Application.Interfaces;
 using RedStarter.Business.DataContract.Authorization.Interfaces;
 using RedStarter.Business.DataContract.Painting;
+using RedStarter.Business.Engines;
+using RedStarter.Business.DataContract.Purchase;
 using RedStarter.Business.Managers.Application;
 using RedStarter.Business.Managers.Authorization;
 using RedStarter.Business.Managers.Painting;
+using RedStarter.Business.Managers.Purchase;
 using RedStarter.Database.Application;
 using RedStarter.Database.Authorization;
 using RedStarter.Database.Contexts;
 using RedStarter.Database.DataContract.Application;
 using RedStarter.Database.DataContract.Authorization.Interfaces;
 using RedStarter.Database.DataContract.Painting;
+using RedStarter.Database.DataContract.Purchase;
 using RedStarter.Database.DataContract.Roles.Interfaces;
 using RedStarter.Database.Entities.People;
 using RedStarter.Database.Entities.Roles;
 using RedStarter.Database.Painting;
+using RedStarter.Database.Purchase;
 using RedStarter.Database.Roles;
 using RedStarter.Database.SeedData;
 using Swashbuckle.AspNetCore.Swagger;
@@ -100,6 +105,7 @@ namespace RedStarter.API
                 mc.AddProfile(new MappingProfile());
                 mc.AddProfile(new ApplicationMappingProfile());
                 mc.AddProfile(new PaintingMappingProfile());
+                mc.AddProfile(new PurchaseMappingProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
@@ -114,6 +120,9 @@ namespace RedStarter.API
             services.AddScoped<IUserApplicationManager, UserApplicationManager>();
             services.AddScoped<IPaintingManager, PaintingManager>();
             services.AddScoped<IPaintingRepository, PaintingRepository>();
+            services.AddScoped<IImageEngine, ImageEngine>();
+            services.AddScoped<IPurchaseManager, PurchaseManager>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
 
             //======= Swagger =======
             services.AddSwaggerGen(c =>

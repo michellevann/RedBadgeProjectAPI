@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedStarter.Database.Contexts;
 
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    partial class SISContextModelSnapshot : ModelSnapshot
+    [Migration("20190109150744_propertiesfixed")]
+    partial class propertiesfixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,6 +199,8 @@ namespace RedStarter.Database.Migrations
 
                     b.Property<double>("Price");
 
+                    b.Property<string>("PriceRange");
+
                     b.Property<string>("Size");
 
                     b.HasKey("PaintingEntityId");
@@ -254,19 +258,6 @@ namespace RedStarter.Database.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
-                {
-                    b.Property<int>("PurchaseId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTimeOffset>("PurchaseDate");
-
-                    b.HasKey("PurchaseId");
-
-                    b.ToTable("PurchaseTableAccess");
                 });
 
             modelBuilder.Entity("RedStarter.Database.Entities.Roles.RoleEntity", b =>
