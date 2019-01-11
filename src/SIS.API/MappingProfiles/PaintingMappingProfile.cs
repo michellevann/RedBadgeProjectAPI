@@ -25,6 +25,10 @@ namespace RedStarter.API.MappingProfiles
             CreateMap<PaintingImageRequest, PaintingImageDTO>();
             CreateMap<PaintingImageDTO, PaintingImageRAO>();
             CreateMap<PaintingImageRAO, PaintingEntity>();
+
+            CreateMap<PaintingUpdateRequest, PaintingUpdateDTO>();
+            CreateMap<PaintingUpdateDTO, PaintingUpdateRAO>();
+            CreateMap<PaintingUpdateRAO, PaintingEntity>();
         }
     }
 }

@@ -56,6 +56,26 @@ namespace RedStarter.API.Controllers.Painting
         //    return Ok(); //TODO: make statuscode 201?
         //}
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePainting([FromForm]PaintingUpdateRequest request, int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var dto = _mapper.Map<PaintingUpdateDTO>(request);
+            dto.OwnerId = identityClaimNum;
+            dto.PaintingEntityId = id;
+
+            if (await _manager.UpdatePainting(dto))
+                return StatusCode(202);
+
+            throw new Exception();
+        }
+
         [HttpGet]
         //[Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> GetPaintings()
@@ -103,25 +123,6 @@ namespace RedStarter.API.Controllers.Painting
             throw new Exception();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePainting(PaintingUpdateRequest request, int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return StatusCode(400);
-            }
-
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
-            var dto = _mapper.Map<PaintingUpdateDTO>(request);
-            dto.OwnerId = identityClaimNum;
-            dto.PaintingEntityId = id;
-
-            if (await _manager.UpdatePainting(dto))
-                return StatusCode(202);
-
-            throw new Exception();
-        }
 
     }
 }
