@@ -7,8 +7,7 @@ namespace RedStarter.API.DataContract.Purchase
 {
     public class PurchaseListItemRequest
     {
+        public int PaintingEntityId { get; set; }
         public int PurchaseId { get; set; }
-
-        public virtual PaintingGetByIdRequest Painting { get; set; }
     }
 }

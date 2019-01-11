@@ -262,7 +262,7 @@ namespace RedStarter.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PaintingEntityId");
+                    b.Property<int>("PaintingEntityId");
 
                     b.Property<DateTimeOffset>("PurchaseDate");
 
@@ -345,9 +345,10 @@ namespace RedStarter.Database.Migrations
 
             modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
                 {
-                    b.HasOne("RedStarter.Database.Entities.Painting.PaintingEntity", "Painting")
+                    b.HasOne("RedStarter.Database.Entities.Painting.PaintingEntity", "PaintingEntity")
                         .WithMany()
-                        .HasForeignKey("PaintingEntityId");
+                        .HasForeignKey("PaintingEntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RedStarter.Database.Entities.Roles.UserRoleEntity", b =>

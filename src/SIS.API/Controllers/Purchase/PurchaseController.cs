@@ -28,7 +28,7 @@ namespace RedStarter.API.Controllers.Purchase
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")] //the only peoeple who can add a product are people that are authorized. THey have to match the SeedRepository
+        //[Authorize(Roles = "Admin")] 
         public async Task<IActionResult> PostPurchase(PurchaseCreateRequest request)
         {
 
@@ -93,7 +93,7 @@ namespace RedStarter.API.Controllers.Purchase
             }
 
             if (await _manager.DeletePurchaseById(id))
-                return StatusCode(200);
+                return StatusCode(202);
 
             throw new Exception();
         }

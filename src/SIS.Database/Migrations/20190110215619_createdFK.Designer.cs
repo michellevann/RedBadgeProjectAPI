@@ -10,8 +10,8 @@ using RedStarter.Database.Contexts;
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    [Migration("20181217153941_initial")]
-    partial class initial
+    [Migration("20190110215619_createdFK")]
+    partial class createdFK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -181,6 +181,31 @@ namespace RedStarter.Database.Migrations
                     b.ToTable("ExperienceTableAccess");
                 });
 
+            modelBuilder.Entity("RedStarter.Database.Entities.Painting.PaintingEntity", b =>
+                {
+                    b.Property<int>("PaintingEntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Artist");
+
+                    b.Property<string>("Color");
+
+                    b.Property<DateTimeOffset>("DateAdded");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<int>("OwnerId");
+
+                    b.Property<double>("Price");
+
+                    b.Property<string>("Size");
+
+                    b.HasKey("PaintingEntityId");
+
+                    b.ToTable("PaintingTableAccess");
+                });
+
             modelBuilder.Entity("RedStarter.Database.Entities.People.UserEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -231,6 +256,23 @@ namespace RedStarter.Database.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
+                {
+                    b.Property<int>("PurchaseId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("PaintingEntityId");
+
+                    b.Property<DateTimeOffset>("PurchaseDate");
+
+                    b.HasKey("PurchaseId");
+
+                    b.HasIndex("PaintingEntityId");
+
+                    b.ToTable("PurchaseTableAccess");
                 });
 
             modelBuilder.Entity("RedStarter.Database.Entities.Roles.RoleEntity", b =>
@@ -300,6 +342,14 @@ namespace RedStarter.Database.Migrations
                     b.HasOne("RedStarter.Database.Entities.People.UserEntity")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
+                {
+                    b.HasOne("RedStarter.Database.Entities.Painting.PaintingEntity", "PaintingEntity")
+                        .WithMany()
+                        .HasForeignKey("PaintingEntityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

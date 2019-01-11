@@ -11,6 +11,8 @@ namespace RedStarter.Database.Entities.Purchase
         [Key]
         public int PurchaseId { get; set; }
 
+        public int PaintingEntityId { get; set; }
+
         [Required]
         public DateTimeOffset PurchaseDate { get; set; }
 

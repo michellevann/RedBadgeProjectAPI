@@ -7,9 +7,8 @@ namespace RedStarter.API.DataContract.Purchase
 {
     public class PurchaseListItemResponse
     {
+        public int PaintingEntityId { get; set; }
         public int PurchaseId { get; set; }
         public DateTimeOffset PurchaseDate { get; set; }
-
-        public virtual PaintingResponse Painting { get; set; }
     }
 }
