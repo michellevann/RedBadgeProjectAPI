@@ -8,6 +8,7 @@ namespace RedStarter.Database.DataContract.Painting
     {
         public int PaintingEntityId { get; set; }
         public string Artist { get; set; }
+        public string Title { get; set; }
         public int OwnerId { get; set; }
         public DateTimeOffset DateAdded { get; set; }
         public string Size { get; set; }

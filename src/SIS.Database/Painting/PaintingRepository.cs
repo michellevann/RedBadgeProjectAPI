@@ -57,6 +57,7 @@ namespace RedStarter.Database.Painting
         {
             var entity = await _context.PaintingTableAccess.SingleAsync(e => e.PaintingEntityId == rao.PaintingEntityId && e.OwnerId == rao.OwnerId); //postman problem
             entity.Artist = rao.Artist;
+            entity.Title = rao.Title;
             entity.Size = rao.Size;
             entity.Price = rao.Price;
             entity.Color = rao.Color;
