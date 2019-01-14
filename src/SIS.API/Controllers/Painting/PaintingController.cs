@@ -27,7 +27,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostPainting([FromBody]PaintingCreateRequest request, [FromForm]IFormFile Image)
+        public async Task<IActionResult> PostPainting([FromForm]PaintingCreateRequest request)
         {    
             if (!ModelState.IsValid)
             {
