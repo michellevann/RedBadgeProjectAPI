@@ -12,6 +12,7 @@ namespace RedStarter.Database.Entities.Painting
         public int PaintingEntityId { get; set; }
 
         public string Artist { get; set; }
+        public string Title { get; set; }
 
         [Required]
         public int OwnerId { get; set; }

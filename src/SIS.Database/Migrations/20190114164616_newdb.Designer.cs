@@ -10,8 +10,8 @@ using RedStarter.Database.Contexts;
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    [Migration("20190110215619_createdFK")]
-    partial class createdFK
+    [Migration("20190114164616_newdb")]
+    partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -200,6 +200,8 @@ namespace RedStarter.Database.Migrations
                     b.Property<double>("Price");
 
                     b.Property<string>("Size");
+
+                    b.Property<string>("Title");
 
                     b.HasKey("PaintingEntityId");
 

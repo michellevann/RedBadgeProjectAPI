@@ -199,6 +199,8 @@ namespace RedStarter.Database.Migrations
 
                     b.Property<string>("Size");
 
+                    b.Property<string>("Title");
+
                     b.HasKey("PaintingEntityId");
 
                     b.ToTable("PaintingTableAccess");
