@@ -199,6 +199,8 @@ namespace RedStarter.Database.Migrations
 
                     b.Property<string>("Size");
 
+                    b.Property<string>("Title");
+
                     b.HasKey("PaintingEntityId");
 
                     b.ToTable("PaintingTableAccess");
@@ -262,9 +264,13 @@ namespace RedStarter.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("PaintingEntityId");
+
                     b.Property<DateTimeOffset>("PurchaseDate");
 
                     b.HasKey("PurchaseId");
+
+                    b.HasIndex("PaintingEntityId");
 
                     b.ToTable("PurchaseTableAccess");
                 });
@@ -336,6 +342,14 @@ namespace RedStarter.Database.Migrations
                     b.HasOne("RedStarter.Database.Entities.People.UserEntity")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
+                {
+                    b.HasOne("RedStarter.Database.Entities.Painting.PaintingEntity", "PaintingEntity")
+                        .WithMany()
+                        .HasForeignKey("PaintingEntityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
