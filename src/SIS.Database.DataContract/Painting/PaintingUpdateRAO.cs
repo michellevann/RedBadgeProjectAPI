@@ -6,10 +6,7 @@ namespace RedStarter.Database.DataContract.Painting
 {
     public class PaintingUpdateRAO
     {
-        public int OwnerId { get; set; }
-
         public int PaintingEntityId { get; set; }
-        public string Artist { get; set; }
         public string Title { get; set; }
         public string Size { get; set; }
         public double Price { get; set; }

@@ -35,10 +35,8 @@ namespace RedStarter.API.Controllers.Painting
             }
 
             //var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
             var dto = _mapper.Map<PaintingCreateDTO>(request);
             dto.DateAdded = DateTime.Now;
-            //dto.OwnerId = identityClaimNum;
 
             //var dtoImage = _mapper.Map<PaintingImageDTO>(image);
             //var success = await _manager.UploadPaintingImage(dtoImage);
@@ -49,13 +47,22 @@ namespace RedStarter.API.Controllers.Painting
             throw new Exception();
         }
 
-        //[HttpPost("UploadPaintingImage")]
-        //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
-        //{
-        //    var dtoImage = _mapper.Map<PaintingImageDTO>(image);
-        //    var success = await _manager.UploadPaintingImage(dtoImage);
-        //    return Ok(); //TODO: make statuscode 201?
-        //}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePainting([FromForm]PaintingUpdateRequest request, int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            var dto = _mapper.Map<PaintingUpdateDTO>(request);
+            dto.PaintingEntityId = id;
+
+            if (await _manager.UpdatePainting(dto))
+                return StatusCode(202);
+
+            throw new Exception();
+        }
 
         [HttpGet]
         //[Authorize(Roles = "User, Admin")]
@@ -65,8 +72,6 @@ namespace RedStarter.API.Controllers.Painting
             {
                 return StatusCode(400);
             }
-
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var dto = await _manager.GetPaintings();
             var response = _mapper.Map<IEnumerable<PaintingResponse>>(dto);
@@ -81,8 +86,6 @@ namespace RedStarter.API.Controllers.Painting
             {
                 return StatusCode(400);
             }
-
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var dto = await _manager.GetPaintingById(id);
             var response = _mapper.Map<PaintingGetByIdRequest>(dto);
@@ -123,6 +126,13 @@ namespace RedStarter.API.Controllers.Painting
 
             throw new Exception();
         }
+        //[HttpPost("UploadPaintingImage")]
+        //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
+        //{
+        //    var dtoImage = _mapper.Map<PaintingImageDTO>(image);
+        //    var success = await _manager.UploadPaintingImage(dtoImage);
+        //    return Ok(); //TODO: make statuscode 201?
+        //}
 
     }
 }
