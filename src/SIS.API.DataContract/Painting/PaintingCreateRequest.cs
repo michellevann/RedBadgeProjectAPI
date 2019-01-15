@@ -7,7 +7,7 @@ namespace RedStarter.API.DataContract.Painting
 {
     public class PaintingCreateRequest
     {        
-        public string Artist { get; set; }
+        public string Title { get; set; }
         public string Size { get; set; }
         public double Price { get; set; }
         public string Color { get; set; }

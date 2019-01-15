@@ -7,8 +7,7 @@ namespace RedStarter.API.DataContract.Painting
     public class PaintingResponse
     {
         public int PaintingEntityId { get; set; }
-        public string Artist { get; set; }
-        public int OwnerId { get; set; }
+        public string Title { get; set; }
         public DateTimeOffset DateAdded { get; set; }
         public string Size { get; set; }
         public double Price { get; set; }

@@ -34,6 +34,19 @@ namespace RedStarter.Business.Managers.Painting
             throw new NotImplementedException();
         }
 
+        public async Task<bool> UpdatePainting(PaintingUpdateDTO dto)
+        {
+            var rao = _mapper.Map<PaintingUpdateRAO>(dto);
+            var returnedURL = _engine.UpdateImageAndGetUrl(dto);
+            rao.ImageUrl = returnedURL;
+
+
+            if (await _repository.UpdatePainting(rao))
+                return true;
+
+            throw new Exception();
+        }
+
         public async Task<IEnumerable<PaintingGetListItemDTO>> GetPaintings()
         {
             var rao = await _repository.GetPaintings();
@@ -58,15 +71,6 @@ namespace RedStarter.Business.Managers.Painting
             throw new Exception();
         }
 
-        public async Task<bool> UpdatePainting(PaintingUpdateDTO dto)
-        {
-            var rao = _mapper.Map<PaintingUpdateRAO>(dto);
-
-            if (await _repository.UpdatePainting(rao))
-                return true;
-
-            throw new Exception();
-        }
 
         //public async Task<bool> UploadPaintingImage(PaintingImageDTO image)
         //{

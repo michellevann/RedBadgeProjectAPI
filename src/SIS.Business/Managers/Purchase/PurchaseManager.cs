@@ -52,7 +52,7 @@ namespace RedStarter.Business.Managers.Purchase
             if (await _repository.DeletePurchaseById(id))
                 return true;
 
-            return false;
+            throw new Exception();
         }
     }
 }
