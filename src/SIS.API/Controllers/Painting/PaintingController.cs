@@ -26,6 +26,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> PostPainting([FromForm]PaintingCreateRequest request)
         {    
             if (!ModelState.IsValid)
@@ -46,6 +47,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpPut("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdatePainting([FromForm]PaintingUpdateRequest request, int id)
         {
             if (!ModelState.IsValid)
@@ -78,6 +80,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpGet("{id}")]
+        //[Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> GetPaintingById(int id)
         {
             if (!ModelState.IsValid)
@@ -92,6 +95,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePainting(int id)
         {
             if (!ModelState.IsValid)

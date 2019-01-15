@@ -12,6 +12,5 @@ namespace RedStarter.Database.DataContract.Painting
         Task<PaintingGetListItemRAO> GetPaintingById(int id);
         Task<bool> DeletePainting(int id);
         Task<bool> UpdatePainting(PaintingUpdateRAO rao);
-        //Task<bool> UploadPaintingImage(PaintingImageRAO image);
     }
 }

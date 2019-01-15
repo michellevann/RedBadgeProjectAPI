@@ -34,8 +34,6 @@ namespace RedStarter.Business.Engines
 
             return result;
 
-            //TODO 6: acct object for cloudinary which will have info about the app & keys
-            //TODO 7: upload method specific for cloudinary
             throw new NotImplementedException();
         }
 
