@@ -16,6 +16,25 @@ namespace RedStarter.Database.Entities.Purchase
         [Required]
         public DateTimeOffset PurchaseDate { get; set; }
 
+        [Required]
+        public string BuyerName { get; set; }
+
+        [Required]
+        public string StreetAddress { get; set; }
+
+        [Required]
+        public string City { get; set; }
+
+        [Required]
+        public string State { get; set; }
+
+        [Required]
+        public int Zip { get; set; }
+
+        [Required]
+        public string BuyerEmail { get; set; }
+
         public virtual PaintingEntity PaintingEntity { get; set; }
+
     }
 }
