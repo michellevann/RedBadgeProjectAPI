@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedStarter.API.DataContract.Painting;
 using RedStarter.Business.DataContract.Painting;
@@ -33,6 +34,7 @@ namespace RedStarter.API.Controllers.Painting
                 return StatusCode(400);
             }
 
+            //var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var dto = _mapper.Map<PaintingCreateDTO>(request);
             dto.DateAdded = DateTime.Now;
 
@@ -105,6 +107,25 @@ namespace RedStarter.API.Controllers.Painting
             throw new Exception();
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePainting(PaintingUpdateRequest request, int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(400);
+            }
+
+            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var dto = _mapper.Map<PaintingUpdateDTO>(request);
+            dto.OwnerId = identityClaimNum;
+            dto.PaintingEntityId = id;
+
+            if (await _manager.UpdatePainting(dto))
+                return StatusCode(202);
+
+            throw new Exception();
+        }
         //[HttpPost("UploadPaintingImage")]
         //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
         //{

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedStarter.Database.Contexts;
 
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    partial class SISContextModelSnapshot : ModelSnapshot
+    [Migration("20190114214929_whatever")]
+    partial class whatever
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,11 +187,15 @@ namespace RedStarter.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Artist");
+
                     b.Property<string>("Color");
 
                     b.Property<DateTimeOffset>("DateAdded");
 
                     b.Property<string>("ImageUrl");
+
+                    b.Property<int>("OwnerId");
 
                     b.Property<double>("Price");
 
@@ -260,26 +266,9 @@ namespace RedStarter.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BuyerEmail")
-                        .IsRequired();
-
-                    b.Property<string>("BuyerName")
-                        .IsRequired();
-
-                    b.Property<string>("City")
-                        .IsRequired();
-
                     b.Property<int>("PaintingEntityId");
 
                     b.Property<DateTimeOffset>("PurchaseDate");
-
-                    b.Property<string>("State")
-                        .IsRequired();
-
-                    b.Property<string>("StreetAddress")
-                        .IsRequired();
-
-                    b.Property<int>("Zip");
 
                     b.HasKey("PurchaseId");
 
