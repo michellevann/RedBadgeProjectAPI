@@ -185,15 +185,11 @@ namespace RedStarter.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Artist");
-
                     b.Property<string>("Color");
 
                     b.Property<DateTimeOffset>("DateAdded");
 
                     b.Property<string>("ImageUrl");
-
-                    b.Property<int>("OwnerId");
 
                     b.Property<double>("Price");
 

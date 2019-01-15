@@ -7,9 +7,6 @@ namespace RedStarter.Business.DataContract.Painting
 {
     public class PaintingCreateDTO
     {
-        public int OwnerId { get; set; }
-
-        public string Artist { get; set; }
         public string Title { get; set; }
         public string Size { get; set; }
         public double Price { get; set; }

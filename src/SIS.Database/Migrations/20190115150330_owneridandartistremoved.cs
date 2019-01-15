@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RedStarter.Database.Migrations
 {
-    public partial class newdb : Migration
+    public partial class owneridandartistremoved : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -130,9 +130,7 @@ namespace RedStarter.Database.Migrations
                 {
                     PaintingEntityId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Artist = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
-                    OwnerId = table.Column<int>(nullable: false),
                     DateAdded = table.Column<DateTimeOffset>(nullable: false),
                     Size = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),

@@ -33,11 +33,8 @@ namespace RedStarter.API.Controllers.Painting
                 return StatusCode(400);
             }
 
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
             var dto = _mapper.Map<PaintingCreateDTO>(request);
             dto.DateAdded = DateTime.Now;
-            dto.OwnerId = identityClaimNum;
 
             //var dtoImage = _mapper.Map<PaintingImageDTO>(image);
             //var success = await _manager.UploadPaintingImage(dtoImage);
@@ -64,10 +61,7 @@ namespace RedStarter.API.Controllers.Painting
                 return StatusCode(400);
             }
 
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
             var dto = _mapper.Map<PaintingUpdateDTO>(request);
-            dto.OwnerId = identityClaimNum;
             dto.PaintingEntityId = id;
 
             if (await _manager.UpdatePainting(dto))
@@ -85,8 +79,6 @@ namespace RedStarter.API.Controllers.Painting
                 return StatusCode(400);
             }
 
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
             var dto = await _manager.GetPaintings();
             var response = _mapper.Map<IEnumerable<PaintingResponse>>(dto);
 
@@ -100,8 +92,6 @@ namespace RedStarter.API.Controllers.Painting
             {
                 return StatusCode(400);
             }
-
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var dto = await _manager.GetPaintingById(id);
             var response = _mapper.Map<PaintingGetByIdRequest>(dto);
