@@ -34,11 +34,11 @@ namespace RedStarter.API.Controllers.Painting
                 return StatusCode(400);
             }
 
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            //var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var dto = _mapper.Map<PaintingCreateDTO>(request);
             dto.DateAdded = DateTime.Now;
-            dto.OwnerId = identityClaimNum;
+            //dto.OwnerId = identityClaimNum;
 
             //var dtoImage = _mapper.Map<PaintingImageDTO>(image);
             //var success = await _manager.UploadPaintingImage(dtoImage);
