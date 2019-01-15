@@ -45,14 +45,6 @@ namespace RedStarter.API.Controllers.Painting
             throw new Exception();
         }
 
-        //[HttpPost("UploadPaintingImage")]
-        //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
-        //{
-        //    var dtoImage = _mapper.Map<PaintingImageDTO>(image);
-        //    var success = await _manager.UploadPaintingImage(dtoImage);
-        //    return Ok(); //TODO: make statuscode 201?
-        //}
-
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePainting([FromForm]PaintingUpdateRequest request, int id)
         {
@@ -113,6 +105,13 @@ namespace RedStarter.API.Controllers.Painting
             throw new Exception();
         }
 
+        //[HttpPost("UploadPaintingImage")]
+        //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
+        //{
+        //    var dtoImage = _mapper.Map<PaintingImageDTO>(image);
+        //    var success = await _manager.UploadPaintingImage(dtoImage);
+        //    return Ok(); //TODO: make statuscode 201?
+        //}
 
     }
 }
