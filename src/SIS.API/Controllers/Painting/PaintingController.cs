@@ -116,6 +116,5 @@ namespace RedStarter.API.Controllers.Painting
         //    var success = await _manager.UploadPaintingImage(dtoImage);
         //    return Ok(); //TODO: make statuscode 201?
         //}
-
     }
 }
