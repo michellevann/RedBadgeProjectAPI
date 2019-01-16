@@ -260,6 +260,8 @@ namespace RedStarter.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AptNumber");
+
                     b.Property<string>("BuyerEmail")
                         .IsRequired();
 

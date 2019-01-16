@@ -11,6 +11,7 @@ namespace RedStarter.API.DataContract.Purchase
         public int PurchaseId { get; set; }
         public string BuyerName { get; set; }
         public string StreetAddress { get; set; }
+        public string AptNumber { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public int Zip { get; set; }

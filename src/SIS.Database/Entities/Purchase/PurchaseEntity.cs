@@ -22,6 +22,8 @@ namespace RedStarter.Database.Entities.Purchase
         [Required]
         public string StreetAddress { get; set; }
 
+        public string AptNumber { get; set; }
+
         [Required]
         public string City { get; set; }
 
