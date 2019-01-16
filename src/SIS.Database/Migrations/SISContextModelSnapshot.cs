@@ -260,9 +260,28 @@ namespace RedStarter.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AptNumber");
+
+                    b.Property<string>("BuyerEmail")
+                        .IsRequired();
+
+                    b.Property<string>("BuyerName")
+                        .IsRequired();
+
+                    b.Property<string>("City")
+                        .IsRequired();
+
                     b.Property<int>("PaintingEntityId");
 
                     b.Property<DateTimeOffset>("PurchaseDate");
+
+                    b.Property<string>("State")
+                        .IsRequired();
+
+                    b.Property<string>("StreetAddress")
+                        .IsRequired();
+
+                    b.Property<int>("Zip");
 
                     b.HasKey("PurchaseId");
 

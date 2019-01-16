@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedStarter.API.DataContract.Painting;
 using RedStarter.Business.DataContract.Painting;
@@ -26,6 +27,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> PostPainting([FromForm]PaintingCreateRequest request)
         {    
             if (!ModelState.IsValid)
@@ -33,6 +35,7 @@ namespace RedStarter.API.Controllers.Painting
                 return StatusCode(400);
             }
 
+            //var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var dto = _mapper.Map<PaintingCreateDTO>(request);
             dto.DateAdded = DateTime.Now;
 
@@ -45,15 +48,8 @@ namespace RedStarter.API.Controllers.Painting
             throw new Exception();
         }
 
-        //[HttpPost("UploadPaintingImage")]
-        //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
-        //{
-        //    var dtoImage = _mapper.Map<PaintingImageDTO>(image);
-        //    var success = await _manager.UploadPaintingImage(dtoImage);
-        //    return Ok(); //TODO: make statuscode 201?
-        //}
-
         [HttpPut("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdatePainting([FromForm]PaintingUpdateRequest request, int id)
         {
             if (!ModelState.IsValid)
@@ -86,6 +82,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpGet("{id}")]
+        //[Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> GetPaintingById(int id)
         {
             if (!ModelState.IsValid)
@@ -100,6 +97,7 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpDelete("{id}")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePainting(int id)
         {
             if (!ModelState.IsValid)
@@ -113,6 +111,12 @@ namespace RedStarter.API.Controllers.Painting
             throw new Exception();
         }
 
-
+        //[HttpPost("UploadPaintingImage")]
+        //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
+        //{
+        //    var dtoImage = _mapper.Map<PaintingImageDTO>(image);
+        //    var success = await _manager.UploadPaintingImage(dtoImage);
+        //    return Ok(); //TODO: make statuscode 201?
+        //}
     }
 }

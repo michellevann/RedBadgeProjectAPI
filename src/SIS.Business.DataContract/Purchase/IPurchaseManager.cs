@@ -12,5 +12,6 @@ namespace RedStarter.Business.DataContract.Purchase
         Task<IEnumerable<PurchaseListItemDTO>> GetPurchases();
         Task<PurchaseListItemDTO> GetPurchaseById(int id);
         Task<bool> DeletePurchaseById(int id);
+        Task<bool> CreateCharge(PurchaseCreateChargeDTO dtoToken);
     }
 }

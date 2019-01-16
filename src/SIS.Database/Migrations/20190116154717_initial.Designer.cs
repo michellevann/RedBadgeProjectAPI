@@ -10,8 +10,8 @@ using RedStarter.Database.Contexts;
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    [Migration("20190115150330_owneridandartistremoved")]
-    partial class owneridandartistremoved
+    [Migration("20190116154717_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -262,9 +262,28 @@ namespace RedStarter.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AptNumber");
+
+                    b.Property<string>("BuyerEmail")
+                        .IsRequired();
+
+                    b.Property<string>("BuyerName")
+                        .IsRequired();
+
+                    b.Property<string>("City")
+                        .IsRequired();
+
                     b.Property<int>("PaintingEntityId");
 
                     b.Property<DateTimeOffset>("PurchaseDate");
+
+                    b.Property<string>("State")
+                        .IsRequired();
+
+                    b.Property<string>("StreetAddress")
+                        .IsRequired();
+
+                    b.Property<int>("Zip");
 
                     b.HasKey("PurchaseId");
 

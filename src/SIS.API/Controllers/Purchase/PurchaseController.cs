@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedStarter.API.DataContract.Purchase;
 using RedStarter.Business.DataContract.Purchase;
+using RedStarter.Business.DataContract.Purchase.DTOs;
 using RedStarter.Database.DataContract.Purchase;
 
 namespace RedStarter.API.Controllers.Purchase
@@ -37,17 +38,23 @@ namespace RedStarter.API.Controllers.Purchase
                 return StatusCode(400);
             }
 
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value); //what this does: handy little tool to see who is associated with the incoming request. Takes token, goes into DB and checks it out
-
             var dto = _mapper.Map<PurchaseCreateDTO>(request);
             dto.PurchaseDate = DateTime.Now;
-            dto.OwnerId = identityClaimNum;
 
             if (await _manager.CreatePurchase(dto))
                 return StatusCode(201);
 
             throw new Exception(); 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCharge(PurchaseCreateChargeRequest request)
+        {
+            var dtoToken = _mapper.Map<PurchaseCreateChargeDTO>(request);
+            var success = await _manager.CreateCharge(dtoToken);
+            return Ok();
+        }
+
 
         [HttpGet]
         //[Authorize(Roles = "Admin")]
