@@ -14,6 +14,7 @@ namespace RedStarter.Business.Managers.Purchase
     {
         private readonly IMapper _mapper;
         private readonly IPurchaseRepository _repository;
+        private readonly IStripeEngine _stripe;
 
         public PurchaseManager(IMapper mapper, IPurchaseRepository repository)
         {
@@ -27,6 +28,12 @@ namespace RedStarter.Business.Managers.Purchase
 
             if (await _repository.CreatePurchase(rao))
                 return true;
+
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> CreateCharge(PurchaseCreateChargeDTO dtoToken)
+        {
 
             throw new NotImplementedException();
         }
@@ -54,6 +61,7 @@ namespace RedStarter.Business.Managers.Purchase
 
             throw new Exception();
         }
+
     }
 }
 

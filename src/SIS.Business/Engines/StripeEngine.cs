@@ -1,0 +1,29 @@
+﻿using RedStarter.Business.DataContract.Purchase;
+using Stripe;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RedStarter.Business.Engines
+{
+    public class StripeEngine : IStripeEngine
+    {
+        public Task<bool> CreateCharge(PurchaseCreateDTO dto)
+        {
+            StripeConfiguration.SetApiKey("sk_test_WGWk6z9utu4sWhJDm52sS0yr");
+            var token = dto.Token;
+            var options = new ChargeCreateOptions
+            {
+                Amount = 1099,
+                Currency = "usd",
+                Description = "example charge",
+                SourceId = token,
+            };
+            var service = new ChargeService();
+            Charge charge = service.Create(options);
+
+            throw new NotImplementedException();
+        }
+    }
+}
