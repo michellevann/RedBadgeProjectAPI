@@ -84,8 +84,6 @@ namespace RedStarter.Business.Managers.Painting
         //        return true;
 
 
-        //    //TODO 2: map the dto to an rao after the engine is done
-        //    //TODO 3: CALL THE _repo method
         //    throw new NotImplementedException();
         //}
     }
