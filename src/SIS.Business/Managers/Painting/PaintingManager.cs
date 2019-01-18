@@ -40,7 +40,6 @@ namespace RedStarter.Business.Managers.Painting
             var returnedURL = _engine.UpdateImageAndGetUrl(dto);
             rao.ImageUrl = returnedURL;
 
-
             if (await _repository.UpdatePainting(rao))
                 return true;
 
