@@ -31,6 +31,11 @@ namespace RedStarter.Database.Purchase
             return await _context.SaveChangesAsync() == 1;
         }
 
+        public Task<bool> CreateCharge(PurchaseCreateChargeRAO rao)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<PurchaseListItemRAO>> GetPurchases()
         {
             var query = await _context.PurchaseTableAccess.ToArrayAsync();
@@ -54,5 +59,6 @@ namespace RedStarter.Database.Purchase
 
             return await _context.SaveChangesAsync() == 1;
         }
+
     }
 }

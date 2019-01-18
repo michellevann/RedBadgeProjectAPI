@@ -48,7 +48,8 @@ namespace RedStarter.API.Controllers.Purchase
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCharge(PurchaseCreateChargeRequest request)
+        [Route("CreateCharge")]
+        public async Task<IActionResult> CreateCharge([FromBody]PurchaseCreateChargeRequest request)
         {
             var dtoToken = _mapper.Map<PurchaseCreateChargeDTO>(request);
             var success = await _manager.CreateCharge(dtoToken);

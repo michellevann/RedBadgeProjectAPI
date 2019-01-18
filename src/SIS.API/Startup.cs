@@ -123,6 +123,7 @@ namespace RedStarter.API
             services.AddScoped<IImageEngine, ImageEngine>();
             services.AddScoped<IPurchaseManager, PurchaseManager>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<IStripeEngine, StripeEngine>();
 
             //======= Swagger =======
             services.AddSwaggerGen(c =>
