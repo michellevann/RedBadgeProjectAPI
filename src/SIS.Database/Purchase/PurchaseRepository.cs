@@ -22,18 +22,13 @@ namespace RedStarter.Database.Purchase
             _mapper = mapper;
         }
 
-        public async Task<bool> CreatePurchase(PurchaseCreateRAO rao)
+        public async Task<bool> CreatePurchase(PurchaseCreateChargeRAO rao)
         {
             var entity = _mapper.Map<PurchaseEntity>(rao);
 
             await _context.PurchaseTableAccess.AddAsync(entity);
 
             return await _context.SaveChangesAsync() == 1;
-        }
-
-        public Task<bool> CreateCharge(PurchaseCreateChargeRAO rao)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<PurchaseListItemRAO>> GetPurchases()

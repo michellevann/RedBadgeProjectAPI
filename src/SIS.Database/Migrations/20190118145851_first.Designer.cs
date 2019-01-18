@@ -10,8 +10,8 @@ using RedStarter.Database.Contexts;
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    [Migration("20190116154717_initial")]
-    partial class initial
+    [Migration("20190118145851_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -273,7 +273,7 @@ namespace RedStarter.Database.Migrations
                     b.Property<string>("City")
                         .IsRequired();
 
-                    b.Property<int>("PaintingEntityId");
+                    b.Property<long>("Price");
 
                     b.Property<DateTimeOffset>("PurchaseDate");
 
@@ -283,11 +283,11 @@ namespace RedStarter.Database.Migrations
                     b.Property<string>("StreetAddress")
                         .IsRequired();
 
+                    b.Property<string>("Title");
+
                     b.Property<int>("Zip");
 
                     b.HasKey("PurchaseId");
-
-                    b.HasIndex("PaintingEntityId");
 
                     b.ToTable("PurchaseTableAccess");
                 });
@@ -359,14 +359,6 @@ namespace RedStarter.Database.Migrations
                     b.HasOne("RedStarter.Database.Entities.People.UserEntity")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
-                {
-                    b.HasOne("RedStarter.Database.Entities.Painting.PaintingEntity", "PaintingEntity")
-                        .WithMany()
-                        .HasForeignKey("PaintingEntityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
