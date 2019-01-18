@@ -53,6 +53,10 @@ namespace RedStarter.API.Controllers.Purchase
         {
             var dtoToken = _mapper.Map<PurchaseCreateChargeDTO>(request);
             var success = await _manager.CreateCharge(dtoToken);
+
+            //if (success)
+            //    return 
+
             var success2 = await _manager.CreatePurchase(dtoToken);
             return Ok();
         }

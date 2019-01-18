@@ -43,7 +43,7 @@ namespace RedStarter.Business.Managers.Purchase
                 return true;
 
             else
-                throw new NotImplementedException();
+                throw new StripeException(stripeError:);
         }
 
         public async Task<IEnumerable<PurchaseListItemDTO>> GetPurchases()
