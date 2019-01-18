@@ -11,7 +11,7 @@ namespace RedStarter.Database.Entities.Purchase
         [Key]
         public int PurchaseId { get; set; }
 
-        public int PaintingEntityId { get; set; }
+        //public int PaintingEntityId { get; set; }
 
         [Required]
         public DateTimeOffset PurchaseDate { get; set; }
@@ -36,7 +36,11 @@ namespace RedStarter.Database.Entities.Purchase
         [Required]
         public string BuyerEmail { get; set; }
 
-        public virtual PaintingEntity PaintingEntity { get; set; }
+        public long Price { get; set; }
+
+        public string Title { get; set; }
+
+        //public virtual PaintingEntity PaintingEntity { get; set; }
 
     }
 }

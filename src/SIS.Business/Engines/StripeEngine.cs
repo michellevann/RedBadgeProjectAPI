@@ -10,20 +10,23 @@ namespace RedStarter.Business.Engines
 {
     public class StripeEngine : IStripeEngine
     {
-        public Task<bool> CreateCharge(PurchaseCreateChargeDTO dto)
+        public async Task<bool> CreateCharge(PurchaseCreateChargeDTO dto)
         {
             StripeConfiguration.SetApiKey("sk_test_WGWk6z9utu4sWhJDm52sS0yr");
             var token = dto.Token;
             var options = new ChargeCreateOptions
             {
-                Amount = 1099,
+                Amount = dto.Price,
                 Currency = "usd",
-                Description = "example charge",
+                Description = dto.Title,
                 SourceId = token,
             };
             var service = new ChargeService();
             Charge charge = service.Create(options);
 
+            //return true;
+            if (charge.Status == "succeeded")
+                return true;
             throw new NotImplementedException();
         }
     }

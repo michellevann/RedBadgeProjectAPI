@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RedStarter.Database.Migrations
 {
-    public partial class initial : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -143,6 +143,28 @@ namespace RedStarter.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PurchaseTableAccess",
+                columns: table => new
+                {
+                    PurchaseId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PurchaseDate = table.Column<DateTimeOffset>(nullable: false),
+                    BuyerName = table.Column<string>(nullable: false),
+                    StreetAddress = table.Column<string>(nullable: false),
+                    AptNumber = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: false),
+                    State = table.Column<string>(nullable: false),
+                    Zip = table.Column<int>(nullable: false),
+                    BuyerEmail = table.Column<string>(nullable: false),
+                    Price = table.Column<long>(nullable: false),
+                    Title = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PurchaseTableAccess", x => x.PurchaseId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -248,33 +270,6 @@ namespace RedStarter.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "PurchaseTableAccess",
-                columns: table => new
-                {
-                    PurchaseId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    PaintingEntityId = table.Column<int>(nullable: false),
-                    PurchaseDate = table.Column<DateTimeOffset>(nullable: false),
-                    BuyerName = table.Column<string>(nullable: false),
-                    StreetAddress = table.Column<string>(nullable: false),
-                    AptNumber = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: false),
-                    State = table.Column<string>(nullable: false),
-                    Zip = table.Column<int>(nullable: false),
-                    BuyerEmail = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PurchaseTableAccess", x => x.PurchaseId);
-                    table.ForeignKey(
-                        name: "FK_PurchaseTableAccess_PaintingTableAccess_PaintingEntityId",
-                        column: x => x.PaintingEntityId,
-                        principalTable: "PaintingTableAccess",
-                        principalColumn: "PaintingEntityId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -313,11 +308,6 @@ namespace RedStarter.Database.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PurchaseTableAccess_PaintingEntityId",
-                table: "PurchaseTableAccess",
-                column: "PaintingEntityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -353,6 +343,9 @@ namespace RedStarter.Database.Migrations
                 name: "ExperienceTableAccess");
 
             migrationBuilder.DropTable(
+                name: "PaintingTableAccess");
+
+            migrationBuilder.DropTable(
                 name: "PurchaseTableAccess");
 
             migrationBuilder.DropTable(
@@ -360,9 +353,6 @@ namespace RedStarter.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "PaintingTableAccess");
         }
     }
 }
