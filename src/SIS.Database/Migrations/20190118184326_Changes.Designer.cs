@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RedStarter.Database.Contexts;
 
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    partial class SISContextModelSnapshot : ModelSnapshot
+    [Migration("20190118184326_Changes")]
+    partial class Changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,6 +89,96 @@ namespace RedStarter.Database.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("RedStarter.Database.Entities.Application.ApplicationEntity", b =>
+                {
+                    b.Property<Guid>("ApplicationEntityId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("DateCreated");
+
+                    b.Property<DateTimeOffset?>("DateModified");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<int>("OwnerId");
+
+                    b.HasKey("ApplicationEntityId");
+
+                    b.ToTable("ApplicationTableAccess");
+                });
+
+            modelBuilder.Entity("RedStarter.Database.Entities.Application.ContactEntity", b =>
+                {
+                    b.Property<Guid>("ApplicationEntityId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("StreetAddress");
+
+                    b.Property<string>("Zip");
+
+                    b.HasKey("ApplicationEntityId");
+
+                    b.ToTable("ContactTableAccess");
+                });
+
+            modelBuilder.Entity("RedStarter.Database.Entities.Application.DemographicEntity", b =>
+                {
+                    b.Property<Guid>("ApplicationEntityId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Ethnicity");
+
+                    b.Property<string>("Gender");
+
+                    b.Property<bool>("Married");
+
+                    b.HasKey("ApplicationEntityId");
+
+                    b.ToTable("DemographicTableAccess");
+                });
+
+            modelBuilder.Entity("RedStarter.Database.Entities.Application.EducationEntity", b =>
+                {
+                    b.Property<Guid>("ApplicationEntityId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CollegeGraduationInfo");
+
+                    b.Property<bool>("CurrentlyEnrolled");
+
+                    b.Property<string>("FieldOfStudy");
+
+                    b.Property<string>("HighSchoolGraduationInfo");
+
+                    b.HasKey("ApplicationEntityId");
+
+                    b.ToTable("EducationTableAccess");
+                });
+
+            modelBuilder.Entity("RedStarter.Database.Entities.Application.ExperienceEntity", b =>
+                {
+                    b.Property<Guid>("ApplicationEntityId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("EmploymentStatus");
+
+                    b.Property<string>("IncomeLevel");
+
+                    b.HasKey("ApplicationEntityId");
+
+                    b.ToTable("ExperienceTableAccess");
                 });
 
             modelBuilder.Entity("RedStarter.Database.Entities.Painting.PaintingEntity", b =>

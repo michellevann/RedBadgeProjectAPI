@@ -68,17 +68,18 @@ namespace RedStarter.API.Controllers.Painting
 
         [HttpGet]
         //[Authorize(Roles = "User, Admin")]
-        public async Task<IActionResult> GetPaintings()
+        public async Task<IEnumerable<PaintingResponse>> GetPaintings()
         {
-            if (!ModelState.IsValid)
-            {
-                return StatusCode(400);
-            }
+           // if (!ModelState.IsValid)
+         //   {
+            //    return StatusCode(400);
+          //  }
 
             var dto = await _manager.GetPaintings();
             var response = _mapper.Map<IEnumerable<PaintingResponse>>(dto);
 
-            return Ok(response);
+            return response
+                .OrderByDescending(d => d.DateAdded);
         }
 
         [HttpGet("{id}")]
