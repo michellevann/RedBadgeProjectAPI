@@ -6,6 +6,7 @@ namespace RedStarter.Database.DataContract.Purchase.RAOs
 {
     public class PurchaseCreateChargeRAO
     {
+        public DateTimeOffset PurchaseDate { get; set; }
         public string Title { get; set; }
         public long Price { get; set; }
         public string BuyerEmail { get; set; }

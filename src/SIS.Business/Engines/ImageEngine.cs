@@ -14,7 +14,6 @@ namespace RedStarter.Business.Engines
         public string UploadImageAndGetUrl(PaintingCreateDTO image)
         {
 
-            //TODO: HIDE THESE GUYS
             Account account = new Account(
                     "paintingproject", //cloud name
                     "373497354299735", //api key
@@ -39,7 +38,6 @@ namespace RedStarter.Business.Engines
 
         public string UpdateImageAndGetUrl(PaintingUpdateDTO image)
         {
-            //TODO: HIDE THESE GUYS
             Account account = new Account(
                     "paintingproject", //cloud name
                     "373497354299735", //api key
