@@ -8,7 +8,7 @@ namespace RedStarter.Database.DataContract.Purchase
     public class PurchaseCreateRAO
     {
         public int PaintingEntityId { get; set; }
-        public int PurchaseId { get; set; }
+        public int PurchaseEntityId { get; set; }
         public DateTimeOffset PurchaseDate { get; set; }
         public string BuyerName { get; set; }
         public string StreetAddress { get; set; }

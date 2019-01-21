@@ -166,7 +166,7 @@ namespace RedStarter.Database.Migrations
 
             modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
                 {
-                    b.Property<int>("PurchaseId")
+                    b.Property<int>("PurchaseEntityId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -195,7 +195,7 @@ namespace RedStarter.Database.Migrations
 
                     b.Property<int>("Zip");
 
-                    b.HasKey("PurchaseId");
+                    b.HasKey("PurchaseEntityId");
 
                     b.ToTable("PurchaseTableAccess");
                 });
