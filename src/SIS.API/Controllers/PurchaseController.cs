@@ -54,6 +54,10 @@ namespace RedStarter.API.Controllers.Purchase
             var dtoToken = _mapper.Map<PurchaseCreateChargeDTO>(request);
             dtoToken.PurchaseDate = DateTime.Now;
             var success = await _manager.CreateCharge(dtoToken);
+
+            //if (success)
+            //    return 
+
             var success2 = await _manager.CreatePurchase(dtoToken);
             return Ok();
         }
@@ -68,7 +72,7 @@ namespace RedStarter.API.Controllers.Purchase
                 return StatusCode(400);
             }
 
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            //var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var dto = await _manager.GetPurchases();
             var response = _mapper.Map<IEnumerable<PurchaseListItemResponse>>(dto);
@@ -85,7 +89,7 @@ namespace RedStarter.API.Controllers.Purchase
                 return StatusCode(400);
             }
 
-            var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            //var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var dto = await _manager.GetPurchaseById(id);
             var response = _mapper.Map<PurchaseListItemResponse>(dto);
