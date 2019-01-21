@@ -6,6 +6,7 @@ namespace RedStarter.Business.DataContract.Purchase.DTOs
 {
     public class PurchaseCreateChargeDTO
     {
+        public DateTimeOffset PurchaseDate { get; set; }
         public string Token { get; set; }
         public string Title { get; set; }
         public long Price { get; set; }
