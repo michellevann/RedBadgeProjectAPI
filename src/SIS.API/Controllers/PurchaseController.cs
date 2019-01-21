@@ -29,7 +29,7 @@ namespace RedStarter.API.Controllers.Purchase
         }
 
         //[HttpPost]
-        //[Authorize(Roles = "Admin")] 
+        //[Authorize] 
         //public async Task<IActionResult> PostPurchase(PurchaseCreateRequest request)
         //{
 
@@ -64,7 +64,7 @@ namespace RedStarter.API.Controllers.Purchase
 
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        //[Authorize]
         public async Task<IActionResult> GetPurchases()
         {
             if (!ModelState.IsValid) 
@@ -81,7 +81,7 @@ namespace RedStarter.API.Controllers.Purchase
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Admin")]
+        //[Authorize]
         public async Task<IActionResult> GetPurchaseById(int id)
         {
             if (!ModelState.IsValid)
@@ -98,7 +98,7 @@ namespace RedStarter.API.Controllers.Purchase
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(Roles = "Admin")]
+        //[Authorize]
         public async Task<IActionResult> DeletePurchaseById(int id)
         {
             if (!ModelState.IsValid)
