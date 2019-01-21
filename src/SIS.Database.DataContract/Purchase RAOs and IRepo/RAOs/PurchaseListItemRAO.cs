@@ -1,14 +1,15 @@
-﻿using RedStarter.API.DataContract.Painting;
+﻿using RedStarter.Database.DataContract.Painting;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RedStarter.API.DataContract.Purchase
+namespace RedStarter.Database.DataContract.Purchase.RAOs
 {
-    public class PurchaseListItemRequest
+    public class PurchaseListItemRAO
     {
         public int PaintingEntityId { get; set; }
         public int PurchaseEntityId { get; set; }
+        public DateTimeOffset PurchaseDate { get; set; }
         public string BuyerName { get; set; }
         public string StreetAddress { get; set; }
         public string AptNumber { get; set; }

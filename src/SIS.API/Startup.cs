@@ -13,19 +13,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using RedStarter.API.MappingProfiles;
-using RedStarter.Business.DataContract.Application.Interfaces;
 using RedStarter.Business.DataContract.Authorization.Interfaces;
 using RedStarter.Business.DataContract.Painting;
 using RedStarter.Business.Engines;
 using RedStarter.Business.DataContract.Purchase;
-using RedStarter.Business.Managers.Application;
 using RedStarter.Business.Managers.Authorization;
 using RedStarter.Business.Managers.Painting;
 using RedStarter.Business.Managers.Purchase;
-using RedStarter.Database.Application;
 using RedStarter.Database.Authorization;
 using RedStarter.Database.Contexts;
-using RedStarter.Database.DataContract.Application;
 using RedStarter.Database.DataContract.Authorization.Interfaces;
 using RedStarter.Database.DataContract.Painting;
 using RedStarter.Database.DataContract.Purchase;
@@ -56,12 +52,12 @@ namespace RedStarter.API
             services.AddDbContext<SISContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             IdentityBuilder builder = services.AddIdentityCore<UserEntity>(opt =>
-                 {
+            {
                      opt.Password.RequireDigit = false;
                      opt.Password.RequiredLength = 4;
                      opt.Password.RequireNonAlphanumeric = false;
                      opt.Password.RequireUppercase = false;
-                 });
+            });
 
             builder = new IdentityBuilder(builder.UserType, typeof(RoleEntity), builder.Services);
             builder.AddEntityFrameworkStores<SISContext>();
@@ -103,7 +99,6 @@ namespace RedStarter.API
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
-                mc.AddProfile(new ApplicationMappingProfile());
                 mc.AddProfile(new PaintingMappingProfile());
                 mc.AddProfile(new PurchaseMappingProfile());
             });
@@ -116,13 +111,12 @@ namespace RedStarter.API
             services.AddScoped<IAuthManager, AuthManager>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IApplicationRepository, ApplicationRepository>();
-            services.AddScoped<IUserApplicationManager, UserApplicationManager>();
             services.AddScoped<IPaintingManager, PaintingManager>();
             services.AddScoped<IPaintingRepository, PaintingRepository>();
             services.AddScoped<IImageEngine, ImageEngine>();
             services.AddScoped<IPurchaseManager, PurchaseManager>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<IStripeEngine, StripeEngine>();
 
             //======= Swagger =======
             services.AddSwaggerGen(c =>

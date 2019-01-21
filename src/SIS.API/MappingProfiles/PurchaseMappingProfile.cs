@@ -23,6 +23,10 @@ namespace RedStarter.API.MappingProfiles
             CreateMap<PurchaseEntity, PurchaseListItemRAO>();
             CreateMap<PurchaseListItemRAO, PurchaseListItemDTO>();
             CreateMap<PurchaseListItemDTO, PurchaseListItemResponse>();
+
+            CreateMap<PurchaseCreateChargeRequest, PurchaseCreateChargeDTO>();
+            CreateMap<PurchaseCreateChargeDTO, PurchaseCreateChargeRAO>();
+            CreateMap<PurchaseCreateChargeRAO, PurchaseEntity>();
         }
 
     }

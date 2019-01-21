@@ -14,7 +14,6 @@ namespace RedStarter.Business.Engines
         public string UploadImageAndGetUrl(PaintingCreateDTO image)
         {
 
-            //TODO: HIDE THESE GUYS
             Account account = new Account(
                     "paintingproject", //cloud name
                     "373497354299735", //api key
@@ -34,14 +33,11 @@ namespace RedStarter.Business.Engines
 
             return result;
 
-            //TODO 6: acct object for cloudinary which will have info about the app & keys
-            //TODO 7: upload method specific for cloudinary
             throw new NotImplementedException();
         }
 
         public string UpdateImageAndGetUrl(PaintingUpdateDTO image)
         {
-            //TODO: HIDE THESE GUYS
             Account account = new Account(
                     "paintingproject", //cloud name
                     "373497354299735", //api key

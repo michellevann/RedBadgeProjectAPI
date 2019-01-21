@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using RedStarter.Database.Entities.Application;
 using RedStarter.Database.Entities.Painting;
 using RedStarter.Database.Entities.People;
 using RedStarter.Database.Entities.Purchase;
@@ -25,11 +24,6 @@ namespace RedStarter.Database.Contexts
         public DbSet<PurchaseEntity> PurchaseTableAccess{ get; set; }
         public DbSet<PaintingEntity> PaintingTableAccess { get; set; }
         public DbSet<UserEntity> UserTableAccess { get; set; }
-        public DbSet<ApplicationEntity> ApplicationTableAccess { get; set; }
-        public DbSet<ContactEntity> ContactTableAccess { get; set; }
-        public DbSet<DemographicEntity> DemographicTableAccess { get; set; }
-        public DbSet<EducationEntity> EducationTableAccess { get; set; }
-        public DbSet<ExperienceEntity> ExperienceTableAccess { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
