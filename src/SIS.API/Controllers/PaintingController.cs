@@ -39,9 +39,6 @@ namespace RedStarter.API.Controllers.Painting
             var dto = _mapper.Map<PaintingCreateDTO>(request);
             dto.DateAdded = DateTime.Now;
 
-            //var dtoImage = _mapper.Map<PaintingImageDTO>(image);
-            //var success = await _manager.UploadPaintingImage(dtoImage);
-
             if (await _manager.CreatePainting(dto))
                 return StatusCode(201);
 
