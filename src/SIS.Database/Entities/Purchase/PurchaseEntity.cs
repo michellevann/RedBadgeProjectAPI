@@ -9,7 +9,7 @@ namespace RedStarter.Database.Entities.Purchase
     public class PurchaseEntity
     {
         [Key]
-        public int PurchaseId { get; set; }
+        public int PurchaseEntityId { get; set; }
 
         //public int PaintingEntityId { get; set; }
 

@@ -10,8 +10,8 @@ using RedStarter.Database.Contexts;
 namespace RedStarter.Database.Migrations
 {
     [DbContext(typeof(SISContext))]
-    [Migration("20190120011232_StrippedUnneededCode")]
-    partial class StrippedUnneededCode
+    [Migration("20190121174409_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -168,7 +168,7 @@ namespace RedStarter.Database.Migrations
 
             modelBuilder.Entity("RedStarter.Database.Entities.Purchase.PurchaseEntity", b =>
                 {
-                    b.Property<int>("PurchaseId")
+                    b.Property<int>("PurchaseEntityId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -197,7 +197,7 @@ namespace RedStarter.Database.Migrations
 
                     b.Property<int>("Zip");
 
-                    b.HasKey("PurchaseId");
+                    b.HasKey("PurchaseEntityId");
 
                     b.ToTable("PurchaseTableAccess");
                 });

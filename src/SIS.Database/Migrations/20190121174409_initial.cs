@@ -4,26 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RedStarter.Database.Migrations
 {
-    public partial class first : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "ApplicationTableAccess",
-                columns: table => new
-                {
-                    ApplicationEntityId = table.Column<Guid>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    OwnerId = table.Column<int>(nullable: false),
-                    DateCreated = table.Column<DateTimeOffset>(nullable: false),
-                    DateModified = table.Column<DateTimeOffset>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationTableAccess", x => x.ApplicationEntityId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -66,65 +50,6 @@ namespace RedStarter.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ContactTableAccess",
-                columns: table => new
-                {
-                    ApplicationEntityId = table.Column<Guid>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true),
-                    StreetAddress = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    Zip = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ContactTableAccess", x => x.ApplicationEntityId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DemographicTableAccess",
-                columns: table => new
-                {
-                    ApplicationEntityId = table.Column<Guid>(nullable: false),
-                    Gender = table.Column<string>(nullable: true),
-                    Ethnicity = table.Column<string>(nullable: true),
-                    Married = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DemographicTableAccess", x => x.ApplicationEntityId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EducationTableAccess",
-                columns: table => new
-                {
-                    ApplicationEntityId = table.Column<Guid>(nullable: false),
-                    HighSchoolGraduationInfo = table.Column<string>(nullable: true),
-                    CollegeGraduationInfo = table.Column<string>(nullable: true),
-                    FieldOfStudy = table.Column<string>(nullable: true),
-                    CurrentlyEnrolled = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EducationTableAccess", x => x.ApplicationEntityId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExperienceTableAccess",
-                columns: table => new
-                {
-                    ApplicationEntityId = table.Column<Guid>(nullable: false),
-                    EmploymentStatus = table.Column<string>(nullable: true),
-                    IncomeLevel = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExperienceTableAccess", x => x.ApplicationEntityId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PaintingTableAccess",
                 columns: table => new
                 {
@@ -146,7 +71,7 @@ namespace RedStarter.Database.Migrations
                 name: "PurchaseTableAccess",
                 columns: table => new
                 {
-                    PurchaseId = table.Column<int>(nullable: false)
+                    PurchaseEntityId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     PurchaseDate = table.Column<DateTimeOffset>(nullable: false),
                     BuyerName = table.Column<string>(nullable: false),
@@ -161,7 +86,7 @@ namespace RedStarter.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PurchaseTableAccess", x => x.PurchaseId);
+                    table.PrimaryKey("PK_PurchaseTableAccess", x => x.PurchaseEntityId);
                 });
 
             migrationBuilder.CreateTable(
@@ -313,9 +238,6 @@ namespace RedStarter.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ApplicationTableAccess");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -329,18 +251,6 @@ namespace RedStarter.Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "ContactTableAccess");
-
-            migrationBuilder.DropTable(
-                name: "DemographicTableAccess");
-
-            migrationBuilder.DropTable(
-                name: "EducationTableAccess");
-
-            migrationBuilder.DropTable(
-                name: "ExperienceTableAccess");
 
             migrationBuilder.DropTable(
                 name: "PaintingTableAccess");

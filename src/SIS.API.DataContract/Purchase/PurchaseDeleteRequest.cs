@@ -8,7 +8,7 @@ namespace RedStarter.API.DataContract.Purchase
     public class PurchaseDeleteRequest
     {
         public int PaintingEntityId { get; set; }
-        public int PurchaseId { get; set; }
+        public int PurchaseEntityId { get; set; }
         public string BuyerName { get; set; }
         public string StreetAddress { get; set; }
         public string AptNumber { get; set; }

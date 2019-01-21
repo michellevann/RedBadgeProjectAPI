@@ -41,7 +41,7 @@ namespace RedStarter.Database.Purchase
 
         public async Task<PurchaseListItemRAO> GetPurchaseById(int id)
         {
-            var query = await _context.PurchaseTableAccess.SingleAsync(e => e.PurchaseId == id);
+            var query = await _context.PurchaseTableAccess.SingleAsync(e => e.PurchaseEntityId == id);
             var rao = _mapper.Map<PurchaseListItemRAO>(query);
 
             return rao;
@@ -49,7 +49,7 @@ namespace RedStarter.Database.Purchase
 
         public async Task<bool> DeletePurchaseById(int id)
         {
-            var entity = await _context.PurchaseTableAccess.SingleAsync(e => e.PurchaseId == id);
+            var entity = await _context.PurchaseTableAccess.SingleAsync(e => e.PurchaseEntityId == id);
             _context.Remove(entity);
 
             return await _context.SaveChangesAsync() == 1;
