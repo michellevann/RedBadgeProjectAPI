@@ -17,5 +17,7 @@ namespace RedStarter.Database.DataContract.Purchase.RAOs
         public string State { get; set; }
         public int Zip { get; set; }
         public string BuyerEmail { get; set; }
+        public string Title { get; set; }
+        public double Price { get; set; }
     }
 }
