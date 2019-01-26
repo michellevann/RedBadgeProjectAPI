@@ -36,39 +36,39 @@ namespace RedStarter.API.Controllers.Purchase
             dtoToken.PurchaseDate = DateTime.Now;
             var success = await _manager.CreateCharge(dtoToken);
             var success2 = await _manager.CreatePurchase(dtoToken);
-            return Ok();
+                return Ok();
         }
 
         [HttpGet]
         public async Task<IActionResult> GetPurchases()
         {
             if (!ModelState.IsValid) 
-            return StatusCode(400);
+                return StatusCode(400);
 
             var dto = await _manager.GetPurchases();
             var response = _mapper.Map<IEnumerable<PurchaseListItemResponse>>(dto);
-            return Ok(response); //TODO : Handle exceptions
+                return Ok(response); //TODO : Handle exceptions
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPurchaseById(int id)
         {
             if (!ModelState.IsValid)
-            return StatusCode(400);
+                return StatusCode(400);
 
             var dto = await _manager.GetPurchaseById(id);
             var response = _mapper.Map<PurchaseListItemResponse>(dto);
-            return Ok(response); //TODO: Handle Exceptions
+                return Ok(response); //TODO: Handle Exceptions
         }
         
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePurchaseById(int id)
         {
             if (!ModelState.IsValid)
-            return StatusCode(400);
+                return StatusCode(400);
 
             if (await _manager.DeletePurchaseById(id))
-            return StatusCode(202);
+                return StatusCode(202);
 
             throw new Exception();
         }
