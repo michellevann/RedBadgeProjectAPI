@@ -47,7 +47,7 @@ namespace RedStarter.API.Controllers.Purchase
 
             var dto = await _manager.GetPurchases();
             var response = _mapper.Map<IEnumerable<PurchaseListItemResponse>>(dto);
-                return Ok(response); //TODO : Handle exceptions
+                return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -58,7 +58,7 @@ namespace RedStarter.API.Controllers.Purchase
 
             var dto = await _manager.GetPurchaseById(id);
             var response = _mapper.Map<PurchaseListItemResponse>(dto);
-                return Ok(response); //TODO: Handle Exceptions
+                return Ok(response);
         }
         
         [HttpDelete("{id}")]
@@ -69,8 +69,8 @@ namespace RedStarter.API.Controllers.Purchase
 
             if (await _manager.DeletePurchaseById(id))
                 return StatusCode(202);
-
-            throw new Exception();
+            else
+                return StatusCode(500);
         }
     }
 }
