@@ -27,15 +27,11 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpPost]
-        //[Authorize]
         public async Task<IActionResult> PostPainting([FromForm]PaintingCreateRequest request)
         {    
             if (!ModelState.IsValid)
-            {
                 return StatusCode(400);
-            }
 
-            //var identityClaimNum = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var dto = _mapper.Map<PaintingCreateDTO>(request);
             dto.DateAdded = DateTime.Now;
 
@@ -46,13 +42,10 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpPut("{id}")]
-        //[Authorize]
         public async Task<IActionResult> UpdatePainting([FromForm]PaintingUpdateRequest request, int id)
         {
             if (!ModelState.IsValid)
-            {
                 return StatusCode(400);
-            }
 
             var dto = _mapper.Map<PaintingUpdateDTO>(request);
             dto.PaintingEntityId = id;
@@ -64,29 +57,22 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpGet]
-        //[Authorize]
         public async Task<IActionResult> GetPaintings()
         {
            if (!ModelState.IsValid)
-           {
                 return StatusCode(400);
-           }
 
-            var dto = await _manager.GetPaintings();
-            var response = _mapper.Map<IEnumerable<PaintingResponse>>(dto);
+           var dto = await _manager.GetPaintings();
+           var response = _mapper.Map<IEnumerable<PaintingResponse>>(dto);
 
-            return Ok(response);
-                //.OrderByDescending(d => d.DateAdded);
+           return Ok(response);
         }
 
         [HttpGet("{id}")]
-        //[Authorize]
         public async Task<IActionResult> GetPaintingById(int id)
         {
             if (!ModelState.IsValid)
-            {
                 return StatusCode(400);
-            }
 
             var dto = await _manager.GetPaintingById(id);
             var response = _mapper.Map<PaintingGetByIdRequest>(dto);
@@ -95,26 +81,16 @@ namespace RedStarter.API.Controllers.Painting
         }
 
         [HttpDelete("{id}")]
-        //[Authorize]
         public async Task<IActionResult> DeletePainting(int id)
         {
             if (!ModelState.IsValid)
-            {
                 return StatusCode(400);
-            }
 
             if (await _manager.DeletePainting(id))
-                return StatusCode(217);
+                return StatusCode(202);
 
-            throw new Exception();
+            else
+                return StatusCode(500);
         }
-
-        //[HttpPost("UploadPaintingImage")]
-        //public async Task<IActionResult> UploadPaintingImage([FromForm]PaintingImageRequest image)
-        //{
-        //    var dtoImage = _mapper.Map<PaintingImageDTO>(image);
-        //    var success = await _manager.UploadPaintingImage(dtoImage);
-        //    return Ok(); //TODO: make statuscode 201?
-        //}
     }
 }

@@ -8,7 +8,6 @@ namespace RedStarter.Business.DataContract.Purchase
     public class PurchaseCreateDTO
     {
         public int PaintingEntityId { get; set; }
-        public int OwnerId { get; set; }
         public int PurchaseEntityId { get; set; }
         public DateTimeOffset PurchaseDate { get; set; }
         public string BuyerName { get; set; }
